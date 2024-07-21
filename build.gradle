@@ -76,7 +76,16 @@ minecraft {
             // You can set various levels here.
             // Please read: https://stackoverflow.com/questions/2031163/when-to-use-the-different-log-levels
             property 'forge.logging.console.level', 'debug'
+            /*
+            jvmArgs += [
+                '--add-opens=java.base/jdk.internal.misc=ALL-UNNAMED', 
+                '--add-opens=java.base/java.nio=ALL-UNNAMED', 
+                '--add-opens=java.base/sun.nio.ch=ALL-UNNAMED', 
+                '-Dio.netty.tryReflectionSetAccessible=true'
+            ]
+            */
         }
+
 
         client {
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
@@ -144,6 +153,20 @@ dependencies {
     
     // Hack fix for now, force jopt-simple to be exactly 5.0.4 because Mojang ships that version, but some transitive dependencies request 6.0+ 
     implementation('net.sf.jopt-simple:jopt-simple:5.0.4') { version { strictly '5.0.4' } }
+
+    implementation 'dev.langchain4j:langchain4j-azure-open-ai:0.32.0'
+
+    constraints {
+        // iterate of a list of strings
+        ['handler', 'buffer', 'codec', 'common', 'resolver',
+            'transport-classes-epoll', 'transport-native-unix-common',
+            'transport'].each { String name ->
+            implementation("io.netty:netty-${name}:4.1.97.Final!!") {
+                because 'Because Minecraft requires this version'
+            }
+        }
+    }
+
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
