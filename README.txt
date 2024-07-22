@@ -44,3 +44,12 @@ Community Documentation: https://docs.minecraftforge.net/en/latest/gettingstarte
 LexManos' Install Video: https://youtu.be/8VEdtQLuLO0
 Forge Forums: https://forums.minecraftforge.net/
 Forge Discord: https://discord.minecraftforge.net/
+
+Azure OpenAI Configuration
+==========================
+
+Before starting the game, set the following environment variables:
+
+    export AZURE_OPENAI_KEY="<AZURE OPENAI KEY>"
+    export AZURE_OPENAI_ENDPOINT="https://<azure openai deployment>.openai.azure.com/"
+    export AZURE_OPENAI_DEPLOYMENT_NAME="gpt-35-turbo"
