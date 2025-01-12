@@ -31,7 +31,7 @@ dependencies {
     implementation("dev.langchain4j:langchain4j-azure-open-ai:1.0.0-alpha1")
     implementation("dev.langchain4j:langchain4j:1.0.0-alpha1")
     implementation("dev.langchain4j:langchain4j-jlama:1.0.0-alpha1")
-    implementation("com.github.tjake:jlama-native:0.8.4:osx-x86_64") 
+    implementation("com.github.tjake:jlama-native:0.8.4:windows-x86_64") 
     implementation("com.azure:azure-identity:1.14.2")
 }
 

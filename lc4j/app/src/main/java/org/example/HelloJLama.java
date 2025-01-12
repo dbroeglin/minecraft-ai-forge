@@ -8,7 +8,7 @@ public class HelloJLama {
                 .modelName("tjake/Mistral-7B-Instruct-v0.3-JQ4")
                 .build();
 
-        String response = model.generate("Write a python program fro fibbonnaci");
+        String response = model.generate("How do I get grilled chicken in Minecraft?");
         System.out.println(response);
     }
 }
