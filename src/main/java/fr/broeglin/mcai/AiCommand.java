@@ -9,6 +9,8 @@ import dev.langchain4j.model.chat.ChatLanguageModel;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.StringUtil;
+
 import org.slf4j.Logger;
 
 public class AiCommand {
@@ -27,6 +29,12 @@ public class AiCommand {
                             String key = System.getenv("AZURE_OPENAI_KEY");
                             String endpoint = System.getenv("AZURE_OPENAI_ENDPOINT");
                             String deploymentName = System.getenv("AZURE_OPENAI_DEPLOYMENT_NAME");
+
+                            if (StringUtil.isBlank(key) || StringUtil.isBlank(endpoint) || StringUtil.isBlank(deploymentName)) {
+                                context.getSource().sendFailure(
+                                        Component.literal("Azure OpenAI credentials are not set. Please set the following environment variables: AZURE_OPENAI_KEY, AZURE_OPENAI_ENDPOINT, AZURE_OPENAI_DEPLOYMENT_NAME"));
+                                return 0; // Command failed
+                            }
 
                             ChatLanguageModel model = AzureOpenAiChatModel.builder()
                                     .apiKey(key)
